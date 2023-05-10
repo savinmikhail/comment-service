@@ -69,7 +69,7 @@
 8. Создайте комментарий, отправив POST запрос на http://localhost:81/api/comment с телом 
     {
         "text": "mikhail.d.savin@gmail.com",
-        "user_id": 123,
+        "user_id": 123
     }
 
 9. Получите комментарий, отправив запрос GET на http://localhost:81/api/comment/1.
@@ -81,7 +81,9 @@
         "parent_id": 1
     }
 
-11. Получите комментарий, отправив запрос GET на http://localhost:81/api/comment/1.
+11. Получите комментарий, отправив запрос GET на http://localhost:81/api/comment/2.
+
+12. Измените комментарий, используя PUT. 
 
 
 # CommentService
