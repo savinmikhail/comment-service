@@ -58,29 +58,35 @@
 5. Перейдите в Postman для тестирования.
 
 6. Создайте пользователя, отправив POST запрос на http://localhost:81/api/users с телом содержащим 
+    ```
     {
         "email": "example@email.com",
         "password": "qwerty123"
     }
-   в формате row, JSON. Скопируйте токен.
+    ```
+   в формате row, JSON. 
 
-7. Авторизуйтесь, отправив POST запрос на http://localhost:81/api/login, вставьте скопированный токен в поле авторизации, Type выберите Bearer token.
+7. Авторизуйтесь, отправив POST запрос на http://localhost:81/api/login, cкопируйте токен из Header -> Authorization. 
 
 8. Создайте комментарий, отправив POST запрос на http://localhost:81/api/comment с телом 
+    ```
     {
         "text": "mikhail.d.savin@gmail.com",
         "user_id": 123
     }
-
-9. Получите комментарий, отправив запрос GET на http://localhost:81/api/comment/1.
+    ```
+    Во вкладке Authorization в поле Type выберите Bearer token. В поле token вставьте скопированный токен. 
+    
+9. Получите комментарий, отправив запрос GET на http://localhost:81/api/comment/1. Не забывайте использовать токен. 
 
 10. Создайте дочерний комментарий, отправив POST запрос на http://localhost:81/api/comment с телом
+    ```
     {
         "text": "mikhail.d.savin@gmail.com",
         "user_id": 123,
         "parent_id": 1
     }
-
+    ```
 11. Получите комментарий, отправив запрос GET на http://localhost:81/api/comment/2.
 
 12. Измените комментарий, используя PUT. 
