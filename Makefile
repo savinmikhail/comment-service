@@ -21,3 +21,7 @@ bash:
 .PHONY: down-build-up
 down-build-up:
 	cd deploy && docker compose --env-file ./../.env down && docker compose --env-file ./../.env build && docker compose --env-file ./../.env up -d
+    
+ .PHONY: migrate
+migrate:
+	cd deploy && docker compose --env-file ./../.env exec php-fpm php artisan migrate
