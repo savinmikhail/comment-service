@@ -2,9 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\LotteryGameController;
-use App\Http\Controllers\LotteryGameMatchController;
-use App\Http\Controllers\LotteryGameMatchUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
