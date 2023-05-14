@@ -71,7 +71,7 @@
 8. Создайте комментарий, отправив POST запрос на ```http://localhost:81/api/comment``` с телом 
     ```
     {
-        "text": "mikhail.d.savin@gmail.com",
+        "text": "Lorem ipsum dolor sit amet",
         "user_id": 123
     }
     ```
@@ -82,7 +82,7 @@
 10. Создайте дочерний комментарий, отправив POST запрос на ```http://localhost:81/api/comment``` с телом
     ```
     {
-        "text": "mikhail.d.savin@gmail.com",
+        "text": "Consectetur adipiscing elit",
         "user_id": 123,
         "parent_id": 1
     }
