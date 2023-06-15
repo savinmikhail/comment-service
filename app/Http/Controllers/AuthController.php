@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginUserRequest;
 use Illuminate\Http\JsonResponse;
 
+
+/**
+ * @OA\Tag(
+ *     name="Auth",
+ *     description="Authentication endpoints"
+ * )
+ */
 class AuthController extends Controller
 {
     /**
@@ -18,8 +25,39 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/login",
+     *     tags={"Auth"},
+     *     summary="User login",
+     *     operationId="userLogin",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="User credentials",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="email", type="string", format="email", example="user@example.com"),
+     *             @OA\Property(property="password", type="string", example="password")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Successful login",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="token_type", type="string", example="Bearer"),
+     *             @OA\Property(property="expires_in", type="integer", example=3600)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Unauthorized")
+     *         )
+     *     )
+     * )
+     *
      * Get a JWT via given credentials.
      *
+     * @param  LoginUserRequest  $request
      * @return JsonResponse
      */
     public function login(LoginUserRequest $request)
@@ -34,6 +72,26 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/me",
+     *     tags={"Auth"},
+     *     summary="Get the authenticated User",
+     *     operationId="getAuthenticatedUser",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response="200",
+     *         description="Successful operation",
+     *         @OA\JsonContent(ref="#/components/schemas/User")
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Unauthorized")
+     *         )
+     *     )
+     * )
+     *
      * Get the authenticated User.
      *
      * @return JsonResponse
@@ -44,6 +102,28 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/logout",
+     *     tags={"Auth"},
+     *     summary="Log the user out",
+     *     operationId="logoutUser",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response="200",
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Successfully logged out")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Unauthorized")
+     *         )
+     *     )
+     * )
+     *
      * Log the user out (Invalidate the token).
      *
      * @return JsonResponse
@@ -56,6 +136,29 @@ class AuthController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/refresh",
+     *     tags={"Auth"},
+     *     summary="Refresh a token",
+     *     operationId="refreshToken",
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response="200",
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="token_type", type="string", example="Bearer"),
+     *             @OA\Property(property="expires_in", type="integer", example=3600)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Unauthorized")
+     *         )
+     *     )
+     * )
+     *
      * Refresh a token.
      *
      * @return JsonResponse
